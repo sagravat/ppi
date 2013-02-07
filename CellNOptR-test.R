@@ -3,12 +3,17 @@
 # ----------------------------------------------------
 #  
 library(CellNOptR)
+args <- commandArgs(TRUE)
 warnings()
 
 # The one step version --------------------------------
-dataToy<-readMIDAS("MD-p53.csv")
+#dataToy<-readMIDAS("MD-p53.csv")
+dataToy<-readMIDAS(args[1])
 CNOlistToy<-makeCNOlist(dataToy,subfield=FALSE)
-ToyModel<-readSIF("p53_feedback_loops.sif")
+ToyModel<-readSIF(args[2])
+#ToyModel<-readSIF("all_pathways.sif")
+#ToyModel<-readSIF("pathway_egfr_signaling.sif")
+#ToyModel<-readSIF("pathway_non_small_cell_lung.sif")
 
 res <- CNORwrap(paramsList=NA, name="Toy", namesData=list(CNOlist="ToyData",model="ToyModel"),data=CNOlistToy, model=ToyModel)
 

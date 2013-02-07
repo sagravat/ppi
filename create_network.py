@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 
 import csv
+import sys
 
 gene_list = []
-with open('p53.txt') as f:
+with open(sys.argv[1]) as f:
     gene_list = f.read().splitlines()
 
 f = open('homo-sapiens-9606.sif', 'rt')
